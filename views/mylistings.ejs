@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOUSE RENTAL SYSTEM</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+</head>
+<body>
+    <div class="main">
+        <div class="wrapper">
+            <h3>Recently Added</h3>
+            <div class="clearfix">
+                <div class="houses">
+                    <% for (let property of propertiesUser) { %>
+                        <div class="house">
+                            <img src="images/house.jpg" />
+                            <span class="house-title"><%= property.ownerName %>'s House</span><br />
+                            <span class="house-added"><%= property.price %></span><br />
+                            <span class="house-location"><%= property.address %></span><br />
+                            <span class="house-location"><%= property.ownerNumber %></span><br />
+                            <form action="/delete/<%= property._id %>" method="POST">
+                                <button type="submit" class="btn-book">Delete</button>
+                            </form>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="HOUSE RENTAL SYSTEM" />
+        <meta name="keywords" content="Give Your Keywords for SEO" />
+        
+        <title>HOUSE RENTAL SYSTEM</title>
+        <!--ADING CSS HERE-->
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    </head>
+    
+    <body>
+        <!--Header Starts HERE-->
+        <header class="header">
+            <div class="wrapper">
+                <h1>HOUSE RENTAL SYSTEM</h1>
+            </div>
+            
+        </header>
+        <!--Header Ends HERE-->
+        
+        
+        
+        <!--Main Body Starts HERE-->
+        <div class="main">
+            <div class="wrapper">
+                
+                
+                <!--Contact Detail Entry-->
+                <div class="booking-details">
+                    <h3>Log In</h3>
+                    <form action="/addproperty">
+
+                        <span class="name">Owner Name</span>
+                        <input type="text" name="ownerName" placeholder="Name" required="true" /><br />
+                        
+                        <span class="name">Ph. Number</span>
+                        <input type="text" name="ownerNumber" placeholder="Phone Number" required="true" /><br />
+
+                        <span class="name">Description</span>
+                        <input type="text"  name="description" placeholder="Description" required="true" /><br />
+
+                        <span class="name">Address</span>
+                        <input type="text" name="address" placeholder="Address" required="true" /><br />
+
+                        <span class="name">Price</span>
+                        <input type="text" name="price" placeholder="Price" required="true" /><br />
+                        
+
+                       <button style="background-color: green; color: white; width: 80px; height: 40px;" type="submit" onclick="handleSubmit()">Add Property</button>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            const form = document.querySelector('form');
+
+            form.addEventListener('submit',async () => {
+    const ownerName = form.ownerName.value;
+    const ownerNumber = form.ownerNumber.value;
+    const description = form.description.value;
+    const address = form.address.value;
+    const price = form.price.value;
+
+    try {
+        const res = await fetch('/addproperty', {
+            method: 'POST',
+            body: JSON.stringify({ ownerName, ownerNumber, description, address,price}),
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        const data = await res.json();
+        console.log(data);
+        if (data.user) {
+            location.assign(data.redirectUrl);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+            )
+            
+            
+        </script>
+    </body>
+</html>

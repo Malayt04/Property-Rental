@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="HOUSE RENTAL SYSTEM" />
+        <meta name="keywords" content="Give Your Keywords for SEO" />
+        
+        <title>HOUSE RENTAL SYSTEM</title>
+ 
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    </head>
+    
+    <body>
+
+        <header class="header">
+            <div class="wrapper">
+                <h1>HOUSE RENTAL SYSTEM</h1>
+            </div>
+            
+        </header>
+
+        <div class="main">
+            <div class="wrapper">
+                
+                
+
+                <div class="booking-details">
+                    <h3>Sign Up</h3>
+                    <form action="/signup">
+                        <span class="name">Name</span>
+                        <input type="text" name="name" placeholder="Name" required="true" /><br />
+
+                        <span class="name">Email</span>
+                        <input type="email" name="email" placeholder="email" required="true" /><br />
+                        
+                        <span class="name">Password</span>
+                        <input type="password" name="password" placeholder="Password" required="true" /><br />
+                        
+                       <button style="background-color: green; color: white; width: 80px; height: 40px;" type="submit">Sign up</button>
+                       <a href="/login">Log In</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+                const form = document.querySelector('form');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault(); 
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    try {
+        const res = await fetch('/signup', {
+            method: 'POST',
+            body: JSON.stringify({name, email, password }),
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        const data = await res.json();
+        console.log(data);
+        if(data){
+            location.assign('/')
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+            
+        </script>
+    </body>
+</html>
